@@ -19,7 +19,7 @@ export default function Home() {
         {/* Left Side: Intro */}
         <div className="flex-1 max-w-3xl">
           <motion.p
-            className="text-sm text-[#CBD5E1] mb-4"
+            className="text-sm text-[#CBD5E1] mb-4 mt-5.5"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
