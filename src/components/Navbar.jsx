@@ -17,20 +17,17 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isHome
-          ? "bg-[#1E3A8A]/20 backdrop-blur-md text-white"
+          ? "bg-[#1A1A2E]/30 backdrop-blur-md text-white border-b border-[#00D4AA]/10"
           : "bg-white border-b border-gray-200 text-[#0F172A]"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-8 md:px-20 h-16">
+        
         {/* Logo */}
-        <div className={`text-xl font-bold`}>
-          <span
-            className={`${
-              isHome ? "text-[#A5B4FC]" : "text-[#1E3A8A]"
-            }`}
-          >
+        <div className="text-xl font-bold">
+          <span className={isHome ? "text-[#00D4AA]" : "text-[#00D4AA]"}>
             A
           </span>
           bhijith Dev
@@ -44,10 +41,10 @@ export default function Navbar() {
               to={link.path}
               className={({ isActive }) =>
                 isActive
-                  ? "text-[#A5B4FC]"
+                  ? `text-[#00D4AA] border-b-2 border-[#00D4AA] pb-0.5`
                   : isHome
-                  ? "hover:text-[#A5B4FC] transition-colors duration-300"
-                  : "hover:text-[#1E3A8A] transition-colors duration-300"
+                  ? "text-white/75 hover:text-[#00D4AA] transition-colors duration-300"
+                  : "text-[#334155] hover:text-[#00D4AA] transition-colors duration-300"
               }
             >
               {link.name}
@@ -59,7 +56,7 @@ export default function Navbar() {
         <div className="md:hidden">
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="text-2xl focus:outline-none"
+            className={`text-2xl focus:outline-none ${isHome ? "text-white" : "text-[#0F172A]"}`}
           >
             {mobileOpen ? <HiOutlineX /> : <HiOutlineMenu />}
           </button>
@@ -68,9 +65,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div
-          className={`md:hidden bg-white text-[#0F172A] border-t border-gray-200 flex flex-col items-center py-4 space-y-4`}
-        >
+        <div className="md:hidden bg-[#16213E] text-white border-t border-[#00D4AA]/20 flex flex-col items-center py-4 space-y-4">
           {links.map((link) => (
             <NavLink
               key={link.name}
@@ -78,8 +73,8 @@ export default function Navbar() {
               onClick={() => setMobileOpen(false)}
               className={({ isActive }) =>
                 isActive
-                  ? "text-[#A5B4FC] font-semibold"
-                  : "hover:text-[#1E3A8A] transition-colors duration-300"
+                  ? "text-[#00D4AA] font-semibold"
+                  : "text-white/75 hover:text-[#00D4AA] transition-colors duration-300"
               }
             >
               {link.name}

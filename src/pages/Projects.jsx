@@ -13,15 +13,15 @@ const allProjects = [
     tech: ["React", "Tailwind", "JavaScript"],
     link: "https://github.com/abhijith-dev3/F1-UI-simulator.git",
     liveLink: "https://f1-ui-simulator.netlify.app/",
-    image: f1
+    image: f1,
   },
   {
-    name: "React-E-commerce🛒 ",
+    name: "React-E-commerce🛒",
     type: "Frontend",
     tech: ["React", "Tailwind", "JavaScript"],
     link: "https://github.com/abhijith-dev3/React-E-commerce-Project.git",
     liveLink: "https://react-e-commerce31.netlify.app/",
-    image: commerce
+    image: commerce,
   },
   {
     name: "Movie Explorer🎬",
@@ -40,7 +40,6 @@ export default function Projects() {
     (p) => filter === "All" || p.type === filter
   );
 
-  // Framer Motion Variants
   const container = {
     hidden: {},
     visible: {
@@ -54,13 +53,13 @@ export default function Projects() {
   };
 
   return (
-    <section className="min-h-screen px-8 md:px-20 py-16 bg-gradient-to-br from-[#f0f4f8] to-[#dbeafe] relative overflow-hidden">
+    <section className="min-h-screen px-8 md:px-20 py-16 bg-white relative overflow-hidden">
 
-      {/* Decorative Circles */}
-      <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#A5B4FC]/20 rounded-full animate-pulse"></div>
-      <div className="absolute -bottom-32 -right-10 w-96 h-96 bg-[#3B82F6]/10 rounded-full animate-pulse z-0"></div>
+      {/* Decorative Bubbles */}
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#00D4AA]/10 rounded-full animate-pulse pointer-events-none"></div>
+      <div className="absolute -bottom-32 -right-10 w-96 h-96 bg-[#0F3460]/10 rounded-full animate-pulse pointer-events-none z-0"></div>
 
-      {/* Section Heading with Scroll Animation */}
+      {/* Section Heading */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -68,29 +67,36 @@ export default function Projects() {
         transition={{ duration: 0.6 }}
         className="text-center mb-12"
       >
-        <p className="text-sm uppercase tracking-wider text-[#1E3A8A] mb-2 mt-10">Projects</p>
-        <h2 className="text-4xl font-bold text-[#0F172A] mb-2">What I Build</h2>
+        <p className="text-xs uppercase tracking-[4px] text-[#00D4AA] font-semibold mb-3 mt-10">
+          PROJECTS
+        </p>
+        <h2 className="text-4xl font-bold text-[#0F172A] mb-4">What I Build</h2>
+        <div className="w-12 h-0.5 bg-[#00D4AA] mx-auto mb-4"></div>
         <p className="text-lg text-[#475569]">
           Some of my recent projects — showcasing frontend & fullstack skills.
         </p>
       </motion.div>
 
       {/* Filter Tabs */}
-      <div className="flex justify-center gap-6 mb-10">
+      <div className="flex justify-center gap-4 mb-10">
         {["All", "Frontend", "Fullstack"].map((tab) => (
           <motion.button
             key={tab}
             onClick={() => setFilter(tab)}
             whileTap={{ scale: 0.95 }}
-            className={`px-4 py-2 rounded-lg font-medium transition
-              ${filter === tab ? "bg-[#1E3A8A] text-white" : "bg-gray-100 text-[#0F172A] hover:bg-gray-200"}`}
+            className={`px-5 py-2 rounded-lg font-medium transition-all duration-200 border
+              ${
+                filter === tab
+                  ? "bg-[#0F3460] text-white border-[#0F3460] shadow-md"
+                  : "bg-white text-[#0F172A] border-[#00D4AA]/30 hover:border-[#00D4AA] hover:text-[#00D4AA]"
+              }`}
           >
             {tab}
           </motion.button>
         ))}
       </div>
 
-      {/* Project Cards Grid with Scroll Animation */}
+      {/* Project Cards Grid */}
       <motion.div
         variants={container}
         initial="hidden"

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-console.log(motion);
+console.log(motion)
 import {
   FaLinkedin,
   FaGithub,
@@ -25,35 +25,40 @@ export default function Contact() {
       name: "LinkedIn",
       icon: <FaLinkedin />,
       link: "https://www.linkedin.com/in/abhijith-s8a",
+      color: "text-[#0077B5]",
     },
     {
       name: "GitHub",
       icon: <FaGithub />,
       link: "https://github.com/abhijith-dev3",
+      color: "text-[#0F172A]",
     },
     {
       name: "Twitter",
       icon: <FaTwitter />,
       link: "https://x.com/Abhijith_dev12",
+      color: "text-[#1DA1F2]",
     },
     {
       name: "Instagram",
       icon: <FaInstagram />,
       link: "https://www.instagram.com/_kair._o_/",
+      color: "text-[#E1306C]",
     },
     {
       name: "Email",
       icon: <FaEnvelope />,
       action: () => window.open(`mailto:${email}`),
+      color: "text-[#00D4AA]",
     },
     {
       name: "Copy Email",
       icon: <FaClipboard />,
       action: copyEmail,
+      color: "text-[#0F3460]",
     },
   ];
 
-  // Framer Motion Variants
   const container = {
     hidden: {},
     visible: {
@@ -71,11 +76,11 @@ export default function Contact() {
   };
 
   return (
-    <section className="min-h-screen px-8 md:px-20 py-24 bg-gradient-to-br from-[#f0f4f8] to-[#dbeafe] relative overflow-hidden flex flex-col md:flex-row gap-12 md:gap-16">
-      
-      {/* Decorative shapes */}
-      <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#A5B4FC]/20 rounded-full animate-pulse"></div>
-      <div className="absolute -bottom-32 -right-10 w-96 h-96 bg-[#3B82F6]/10 rounded-full animate-pulse"></div>
+    <section className="min-h-screen px-8 md:px-20 py-24 bg-white relative overflow-hidden flex flex-col md:flex-row gap-12 md:gap-16">
+
+      {/* Decorative Bubbles */}
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#00D4AA]/10 rounded-full animate-pulse pointer-events-none"></div>
+      <div className="absolute -bottom-32 -right-10 w-96 h-96 bg-[#0F3460]/10 rounded-full animate-pulse pointer-events-none z-0"></div>
 
       {/* Left Side */}
       <motion.div
@@ -85,16 +90,25 @@ export default function Contact() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <p className="text-sm uppercase tracking-widest text-[#1E3A8A] mb-2">
-          Contact
+        <p className="text-xs uppercase tracking-[4px] text-[#00D4AA] font-semibold mb-3">
+          CONTACT
         </p>
         <h1 className="text-4xl md:text-5xl font-bold text-[#0F172A] mb-4">
-          Let’s Build Something Together!
+          Let's Build Something
+          <span className="text-[#00D4AA]"> Together!</span>
         </h1>
-        <p className="text-lg md:text-xl text-[#475569] max-w-lg">
-          Reach out through social media or email. I’m always open for
+        {/* Teal accent line */}
+        <div className="w-12 h-0.5 bg-[#00D4AA] mb-5"></div>
+        <p className="text-lg text-[#475569] max-w-lg">
+          Reach out through social media or email. I'm always open for
           projects, collaborations, or just a friendly hello! 💌
         </p>
+
+        {/* Email display */}
+        <div className="mt-8 flex items-center gap-3 bg-[#f8fafc] border border-[#00D4AA]/20 rounded-lg px-4 py-3 w-fit">
+          <FaEnvelope className="text-[#00D4AA]" />
+          <span className="text-sm text-[#475569] font-medium">{email}</span>
+        </div>
       </motion.div>
 
       {/* Right Side */}
@@ -107,34 +121,35 @@ export default function Contact() {
       >
         <motion.p
           variants={cardVariant}
-          className="text-sm uppercase tracking-widest text-[#1E3A8A] mb-2"
+          className="text-xs uppercase tracking-[4px] text-[#00D4AA] font-semibold"
         >
-          Connect on socials
+          CONNECT ON SOCIALS
         </motion.p>
 
         <motion.div
           variants={cardVariant}
-          className="grid grid-cols-2 sm:grid-cols-3 gap-6"
+          className="grid grid-cols-2 sm:grid-cols-3 gap-4"
         >
           {contacts.map((c) => (
             <motion.button
               key={c.name}
               variants={cardVariant}
               onClick={() => {
-                if (c.link) {
-                  window.open(c.link, "_blank");
-                } else if (c.action) {
-                  c.action();
-                }
+                if (c.link) window.open(c.link, "_blank");
+                else if (c.action) c.action();
               }}
-              className="flex flex-col items-center gap-2 p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition transform cursor-pointer w-full"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 250 }}
+              className="group flex flex-col items-center gap-2 p-5 bg-white border border-[#00D4AA]/20 
+                         hover:border-[#00D4AA]/60 rounded-xl shadow-sm hover:shadow-md 
+                         transition-all duration-300 cursor-pointer w-full overflow-hidden relative"
             >
-              <div className="text-4xl text-[#0F172A] hover:text-[#A5B4FC] transition">
+              {/* Teal top bar on hover */}
+              <div className="absolute top-0 left-0 w-full h-0.5 bg-[#00D4AA] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              <div className={`text-3xl ${c.color} transition-transform duration-200 group-hover:scale-110`}>
                 {c.icon}
               </div>
-              <span className="text-sm text-[#475569] font-medium">
-                {c.name}
-              </span>
+              <span className="text-sm text-[#475569] font-medium">{c.name}</span>
             </motion.button>
           ))}
         </motion.div>
@@ -148,9 +163,11 @@ export default function Contact() {
             setIsCopied(true);
             setTimeout(() => setIsCopied(false), 2000);
           }}
-          className="bg-gradient-to-r from-[#A5B4FC] to-[#6B21A8] text-white px-10 py-4 rounded-lg font-medium text-lg hover:opacity-90 transition shadow-xl mt-6 hover:scale-105 w-full md:w-auto"
+          className="bg-[#0F3460] hover:bg-[#00D4AA] text-white px-10 py-4 rounded-lg font-semibold 
+                     text-lg transition-all duration-300 shadow-lg mt-2 hover:scale-105 
+                     hover:shadow-[0_0_24px_rgba(0,212,170,0.35)] w-full md:w-auto"
         >
-          {isCopied ? "Email Copied! ✅" : "Mail Me"}
+          {isCopied ? "Email Copied! ✅" : "📬 Mail Me"}
         </motion.button>
       </motion.div>
     </section>

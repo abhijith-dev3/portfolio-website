@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { SiTailwindcss } from "react-icons/si";
 console.log(motion)
-import { FaReact, FaHtml5, FaCss3Alt, FaJs, FaGitAlt, FaGithub, FaFigma, FaCode, } from "react-icons/fa";
+import { SiTailwindcss } from "react-icons/si";
+import { FaReact, FaHtml5, FaCss3Alt, FaJs, FaGitAlt, FaGithub, FaFigma, FaCode } from "react-icons/fa";
 
 export default function ProjectCard({ project }) {
   const techIcons = {
@@ -19,29 +19,57 @@ export default function ProjectCard({ project }) {
 
   return (
     <motion.div
-      whileHover={{ scale: 1.05, rotate: 1 }}
+      whileHover={{ scale: 1.03, rotate: 0.5 }}
       transition={{ type: "spring", stiffness: 200 }}
-      className="bg-white rounded-xl shadow-md p-4 flex flex-col items-center z-10"
+      className="group bg-white border border-[#00D4AA]/20 hover:border-[#00D4AA]/50 
+                 rounded-xl shadow-sm hover:shadow-lg overflow-hidden flex flex-col z-10 
+                 transition-all duration-300"
     >
-      <img 
-        src={project.image} 
-        alt={project.name} 
-        className="w-full h-40 object-cover rounded-md mb-4"
-      />
-      <h3 className="font-semibold text-lg mb-2 text-center">{project.name}</h3>
-      <div className="flex flex-wrap gap-3 justify-center mb-3">
-        {project.tech.map((item, idx) => (
-          <div key={idx} className="flex flex-col items-center w-16 h-16">
-            <div className="flex justify-center items-center w-full h-full text-3xl">
-              {techIcons[item] || <FaCode className="text-gray-600" />}
+      {/* Teal top bar */}
+      <div className="w-full h-1 bg-[#00D4AA]"></div>
+
+      <div className="p-5 flex flex-col items-center">
+        <img
+          src={project.image}
+          alt={project.name}
+          className="w-full h-40 object-cover rounded-md mb-4 group-hover:scale-[1.02] transition-transform duration-300"
+        />
+
+        <h3 className="font-semibold text-lg mb-3 text-center text-[#0F172A]">
+          {project.name}
+        </h3>
+
+        {/* Tech Icons */}
+        <div className="flex flex-wrap gap-3 justify-center mb-4">
+          {project.tech.map((item, idx) => (
+            <div key={idx} className="flex flex-col items-center w-14">
+              <div className="flex justify-center items-center text-2xl mb-1">
+                {techIcons[item] || <FaCode className="text-gray-600" />}
+              </div>
+              <span className="text-xs text-center text-[#475569]">{item}</span>
             </div>
-            <span className="text-sm mt-1 text-center">{item}</span>
-          </div>
-        ))}
-      </div>
-      <div className="flex gap-4">
-        <a href={project.link} target="_blank" rel="noreferrer" className="text-sm text-blue-600 hover:underline">Code</a>
-        <a href={project.liveLink} target="_blank" rel="noreferrer" className="text-sm text-green-600 hover:underline">Live</a>
+          ))}
+        </div>
+
+        {/* Links */}
+        <div className="flex gap-5 mt-auto pt-2 border-t border-gray-100 w-full justify-center">
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noreferrer"
+            className="text-sm font-medium text-[#0F3460] hover:text-[#00D4AA] transition-colors duration-200"
+          >
+            Code ↗
+          </a>
+          <a
+            href={project.liveLink}
+            target="_blank"
+            rel="noreferrer"
+            className="text-sm font-medium text-[#00D4AA] hover:text-[#0F3460] transition-colors duration-200"
+          >
+            Live ↗
+          </a>
+        </div>
       </div>
     </motion.div>
   );

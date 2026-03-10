@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-
 console.log(motion)
 import {
   FaReact,
@@ -36,18 +35,33 @@ export default function Skills() {
   ];
 
   const categories = [
-    { title: "Frontend", skills: frontendSkills, bg: "bg-[#E0F2FE]", border: "border-[#BAE6FD]" },
-    { title: "Tools / Workflow", skills: toolsSkills, bg: "bg-[#FEF3C7]", border: "border-[#FDE68A]" },
-    { title: "Learning / Exploring", skills: learningSkills, bg: "bg-[#ECFDF5]", border: "border-[#BBF7D0]" },
+    {
+      title: "Frontend",
+      skills: frontendSkills,
+      bg: "bg-white",
+      border: "border-[#00D4AA]/30",
+      topBar: "bg-[#00D4AA]",
+    },
+    {
+      title: "Tools / Workflow",
+      skills: toolsSkills,
+      bg: "bg-white",
+      border: "border-[#00D4AA]/30",
+      topBar: "bg-[#0F3460]",
+    },
+    {
+      title: "Learning / Exploring",
+      skills: learningSkills,
+      bg: "bg-white",
+      border: "border-[#00D4AA]/30",
+      topBar: "bg-[#00D4AA]/70",
+    },
   ];
 
-  // Framer Motion Variants
   const container = {
     hidden: {},
     visible: {
-      transition: {
-        staggerChildren: 0.15, // stagger cards
-      },
+      transition: { staggerChildren: 0.15 },
     },
   };
 
@@ -57,18 +71,18 @@ export default function Skills() {
   };
 
   return (
-    <section className="relative min-h-screen px-8 md:px-20 pt-24 bg-gradient-to-br from-[#f0f4f8] to-[#dbeafe] overflow-hidden">
+    <section className="relative min-h-screen px-8 md:px-20 pt-24 pb-20 bg-white overflow-hidden">
 
-      {/* Decorative Circles */}
-      <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#A5B4FC]/20 rounded-full animate-pulse"></div>
-      <div className="absolute -bottom-32 -right-10 w-96 h-96 bg-[#3B82F6]/10 rounded-full animate-pulse z-0"></div>
+      {/* Decorative Bubbles */}
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#00D4AA]/10 rounded-full animate-pulse pointer-events-none"></div>
+      <div className="absolute -bottom-32 -right-10 w-96 h-96 bg-[#0F3460]/10 rounded-full animate-pulse pointer-events-none z-0"></div>
 
-      {/* Small Label */}
-      <motion.p 
-        initial={{ opacity: 0, y: -20 }} 
-        whileInView={{ opacity: 1, y: 0 }} 
+      {/* Teal label */}
+      <motion.p
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-sm uppercase tracking-widest text-[#1E3A8A] mb-2 text-center"
+        className="text-xs uppercase tracking-[4px] text-[#00D4AA] font-semibold mb-3 text-center"
       >
         SKILLS
       </motion.p>
@@ -84,6 +98,9 @@ export default function Skills() {
         What I work with
       </motion.h1>
 
+      {/* Teal accent line */}
+      <div className="w-12 h-0.5 bg-[#00D4AA] mx-auto mb-4"></div>
+
       {/* Subtitle */}
       <motion.p
         initial={{ opacity: 0, y: -20 }}
@@ -96,26 +113,30 @@ export default function Skills() {
       </motion.p>
 
       {/* Cards Grid */}
-      <motion.div 
+      <motion.div
         variants={container}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 z-10"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 z-10 relative"
       >
         {categories.map((cat) => (
           <motion.div
             key={cat.title}
             variants={cardVariant}
-            className={`${cat.bg} border ${cat.border} rounded-xl p-6 flex flex-col z-10`}
+            className={`${cat.bg} border ${cat.border} rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 z-10`}
           >
-            <h3 className="text-[#0F172A] font-semibold mb-4 text-center text-lg md:text-xl">
-              {cat.title}
-            </h3>
-            <div className="flex flex-wrap justify-center gap-4">
-              {cat.skills.map((skill) => (
-                <SkillCard key={skill.name} {...skill} />
-              ))}
+            {/* Teal top bar accent */}
+            <div className={`${cat.topBar} h-1 w-full`}></div>
+            <div className="p-6 flex flex-col">
+              <h3 className="text-[#0F172A] font-semibold mb-4 text-center text-lg md:text-xl">
+                {cat.title}
+              </h3>
+              <div className="flex flex-wrap justify-center gap-4">
+                {cat.skills.map((skill) => (
+                  <SkillCard key={skill.name} {...skill} />
+                ))}
+              </div>
             </div>
           </motion.div>
         ))}
@@ -127,7 +148,7 @@ export default function Skills() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.4 }}
-        className="mt-12 text-center italic text-[#64748B]"
+        className="mt-12 text-center italic text-[#00D4AA] font-medium"
       >
         Always learning. Always improving.
       </motion.p>
