@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 console.log(motion)
 import { SiTailwindcss } from "react-icons/si";
@@ -35,9 +34,16 @@ export default function ProjectCard({ project }) {
           className="w-full h-40 object-cover rounded-md mb-4 group-hover:scale-[1.02] transition-transform duration-300"
         />
 
-        <h3 className="font-semibold text-lg mb-3 text-center text-[#0F172A]">
+        <h3 className="font-semibold text-lg mb-2 text-center text-[#0F172A]">
           {project.name}
         </h3>
+
+        {/* Project Description */}
+        {project.description && (
+          <p className="text-sm text-[#475569] text-center mb-3 leading-relaxed">
+            {project.description}
+          </p>
+        )}
 
         {/* Tech Icons */}
         <div className="flex flex-wrap gap-3 justify-center mb-4">
@@ -61,14 +67,20 @@ export default function ProjectCard({ project }) {
           >
             Code ↗
           </a>
-          <a
-            href={project.liveLink}
-            target="_blank"
-            rel="noreferrer"
-            className="text-sm font-medium text-[#00D4AA] hover:text-[#0F3460] transition-colors duration-200"
-          >
-            Live ↗
-          </a>
+          {project.liveLink && project.liveLink !== "https://blog.com" ? (
+            <a
+              href={project.liveLink}
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm font-medium text-[#00D4AA] hover:text-[#0F3460] transition-colors duration-200"
+            >
+              Live ↗
+            </a>
+          ) : (
+            <span className="text-sm font-medium text-gray-300 cursor-not-allowed">
+              Live (coming soon)
+            </span>
+          )}
         </div>
       </div>
     </motion.div>

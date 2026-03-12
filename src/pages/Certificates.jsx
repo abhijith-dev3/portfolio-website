@@ -1,7 +1,5 @@
-import React from "react";
 import { motion } from "framer-motion";
 console.log(motion)
-import CertificateCard from "../components/CertificateCard";
 import frontend from "../assets/images/frontend.png";
 import javascript from "../assets/images/javascript.png";
 import webdesign from "../assets/images/webdesign.png";
@@ -10,85 +8,99 @@ import javascriptrs from "../assets/images/pdf/javascriptrs.pdf";
 import webdesignrs from "../assets/images/pdf/webdesignrs.pdf";
 import uxrs from "../assets/images/pdf/uxrs.pdf";
 
+const certificates = [
+  {
+    n: "01",
+    name: "Meta Frontend Developer",
+    issuer: "Meta / Coursera",
+    logo: frontend,
+    link: "https://coursera.org/share/740fc3863a9e449da5e7180fde464f38",
+  },
+  {
+    n: "02",
+    name: "JavaScript Algorithms",
+    issuer: "freeCodeCamp",
+    logo: javascript,
+    link: javascriptrs,
+  },
+  {
+    n: "03",
+    name: "Responsive Web Design",
+    issuer: "freeCodeCamp",
+    logo: webdesign,
+    link: webdesignrs,
+  },
+  {
+    n: "04",
+    name: "UX/UI Design",
+    issuer: "Google / Coursera",
+    logo: uxui,
+    link: uxrs,
+  },
+];
+
 export default function Certificates() {
-  const certificates = [
-    {
-      name: "Meta Frontend-developer",
-      logo: frontend,
-      link: "https://coursera.org/share/740fc3863a9e449da5e7180fde464f38",
-    },
-    {
-      name: "JavaScript Algorithms",
-      logo: javascript,
-      link: javascriptrs,
-    },
-    {
-      name: "Responsive Web-design",
-      logo: webdesign,
-      link: webdesignrs,
-    },
-    {
-      name: "UX/UI Design",
-      logo: uxui,
-      link: uxrs,
-    },
-  ];
-
-  const container = {
-    hidden: {},
-    visible: {
-      transition: { staggerChildren: 0.15 },
-    },
-  };
-
-  const cardVariant = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
-
   return (
-    <section className="min-h-screen px-8 md:px-20 pt-24 pb-20 relative overflow-hidden bg-white">
+    <div className="bg-[#0a0a0a] text-[#e8e4dc] min-h-screen pt-20">
 
-      {/* Decorative Bubbles */}
-      <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#00D4AA]/10 rounded-full animate-pulse pointer-events-none"></div>
-      <div className="absolute -bottom-32 -right-10 w-96 h-96 bg-[#0F3460]/10 rounded-full animate-pulse pointer-events-none z-0"></div>
+      {/* Header */}
+      <section className="px-8 md:px-16 pt-16 pb-12 border-b border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <motion.span
+            className="text-xs tracking-[4px] text-[#f5a623]/60 uppercase block mb-4"
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+          >
+            05 — Certificates
+          </motion.span>
+          <motion.h1
+            className="text-5xl md:text-7xl font-black text-white"
+            style={{ fontFamily: 'Syne, sans-serif' }}
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+          >
+            Things I've<br />
+            <span className="text-[#f5a623]">Achieved</span>
+          </motion.h1>
+        </div>
+      </section>
 
-      {/* Section Heading */}
-      <motion.div
-        className="text-center mb-14"
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        {/* Teal label matches home page accent color */}
-        <p className="text-xs uppercase tracking-[4px] text-[#00D4AA] font-semibold mb-3">
-          CERTIFICATES
-        </p>
-        <h1 className="text-4xl md:text-5xl font-bold text-[#0F172A] mb-4">
-          Things I've Achieved
-        </h1>
-        {/* Small teal underline — same style as Home page dividers */}
-        <div className="w-12 h-0.5 bg-[#00D4AA] mx-auto mb-5"></div>
-        <p className="text-lg text-[#475569]">
-          Verified courses and achievements that showcase my skills and growth.
-        </p>
-      </motion.div>
+      {/* Certs grid */}
+      <section className="px-8 md:px-16 py-16">
+        <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {certificates.map(({ n, name, issuer, logo, link }, i) => (
+            <motion.a
+              key={n}
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="group border border-white/5 rounded-xl p-6 hover:border-[#f5a623]/25 transition-all duration-300 flex flex-col"
+            >
+              {/* Number */}
+              <span className="text-[#f5a623]/20 text-xs font-bold mb-6" style={{ fontFamily: 'Syne, sans-serif' }}>{n}</span>
 
-      {/* Certificates Grid */}
-      <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 relative z-10"
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        {certificates.map((cert) => (
-          <motion.div key={cert.name} variants={cardVariant}>
-            <CertificateCard certificate={cert} />
-          </motion.div>
-        ))}
-      </motion.div>
-    </section>
+              {/* Logo */}
+              <div className="flex-1 flex items-center justify-center py-4 mb-6">
+                <img
+                  src={logo}
+                  alt={name}
+                  className="max-h-24 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                />
+              </div>
+
+              {/* Info */}
+              <div>
+                <h3 className="text-sm font-bold text-white mb-1" style={{ fontFamily: 'Syne, sans-serif' }}>{name}</h3>
+                <p className="text-xs text-white/30 mb-4">{issuer}</p>
+                <span className="text-xs text-[#f5a623]/50 group-hover:text-[#f5a623] transition-colors duration-300">
+                  View certificate →
+                </span>
+              </div>
+            </motion.a>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }

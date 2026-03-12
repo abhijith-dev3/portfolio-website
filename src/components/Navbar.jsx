@@ -1,11 +1,16 @@
-import { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 
 export default function Navbar() {
-  const location = useLocation();
-  const isHome = location.pathname === "/";
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const links = [
     { name: "Home", path: "/" },
@@ -16,67 +21,80 @@ export default function Navbar() {
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isHome
-          ? "bg-[#1A1A2E]/30 backdrop-blur-md text-white border-b border-[#00D4AA]/10"
-          : "bg-white border-b border-gray-200 text-[#0F172A]"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-8 md:px-20 h-16">
-        
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      scrolled
+        ? "bg-[#0a0a0a]/95 backdrop-blur-md border-b border-white/5"
+        : "bg-transparent"
+    }`}>
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-8 md:px-16 h-16">
+
         {/* Logo */}
-        <div className="text-xl font-bold">
-          <span className={isHome ? "text-[#00D4AA]" : "text-[#00D4AA]"}>
-            A
+        <NavLink to="/" className="flex items-center gap-2 group">
+          <span className="w-2 h-2 rounded-full bg-[#f5a623] group-hover:scale-150 transition-transform duration-300" />
+          <span style={{ fontFamily: 'Syne, sans-serif' }} className="text-lg font-bold text-white tracking-tight">
+            abhijith<span className="text-[#f5a623]">.</span>dev
           </span>
-          bhijith Dev
-        </div>
+        </NavLink>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex gap-10 font-medium">
-          {links.map((link) => (
+        <div className="hidden md:flex items-center gap-10">
+          {links.map((link, i) => (
             <NavLink
               key={link.name}
               to={link.path}
               className={({ isActive }) =>
-                isActive
-                  ? `text-[#00D4AA] border-b-2 border-[#00D4AA] pb-0.5`
-                  : isHome
-                  ? "text-white/75 hover:text-[#00D4AA] transition-colors duration-300"
-                  : "text-[#334155] hover:text-[#00D4AA] transition-colors duration-300"
+                `relative text-sm font-medium tracking-wide transition-colors duration-300 ${
+                  isActive ? "text-[#f5a623]" : "text-white/50 hover:text-white"
+                }`
               }
             >
-              {link.name}
+              {({ isActive }) => (
+                <>
+                  <span className="text-[#f5a623]/40 text-xs mr-1" style={{ fontFamily: 'Syne, sans-serif' }}>
+                    0{i + 1}.
+                  </span>
+                  {link.name}
+                  {isActive && (
+                    <span className="absolute -bottom-1 left-0 w-full h-px bg-[#f5a623]" />
+                  )}
+                </>
+              )}
             </NavLink>
           ))}
+          <a
+            href="/resume.pdf"
+            download
+            className="ml-2 px-4 py-1.5 border border-[#f5a623]/60 text-[#f5a623] text-sm font-medium rounded hover:bg-[#f5a623] hover:text-black transition-all duration-300"
+            style={{ fontFamily: 'Syne, sans-serif' }}
+          >
+            Resume ↓
+          </a>
         </div>
 
         {/* Mobile Hamburger */}
-        <div className="md:hidden">
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className={`text-2xl focus:outline-none ${isHome ? "text-white" : "text-[#0F172A]"}`}
-          >
-            {mobileOpen ? <HiOutlineX /> : <HiOutlineMenu />}
-          </button>
-        </div>
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden text-2xl text-white focus:outline-none"
+        >
+          {mobileOpen ? <HiOutlineX /> : <HiOutlineMenu />}
+        </button>
       </div>
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-[#16213E] text-white border-t border-[#00D4AA]/20 flex flex-col items-center py-4 space-y-4">
-          {links.map((link) => (
+        <div className="md:hidden bg-[#0f0f0f] border-t border-white/5 flex flex-col items-start px-8 py-6 gap-5">
+          {links.map((link, i) => (
             <NavLink
               key={link.name}
               to={link.path}
               onClick={() => setMobileOpen(false)}
               className={({ isActive }) =>
-                isActive
-                  ? "text-[#00D4AA] font-semibold"
-                  : "text-white/75 hover:text-[#00D4AA] transition-colors duration-300"
+                `text-base font-medium flex items-center gap-3 transition-colors duration-200 ${
+                  isActive ? "text-[#f5a623]" : "text-white/60 hover:text-white"
+                }`
               }
             >
+              <span className="text-[#f5a623]/40 text-xs" style={{ fontFamily: 'Syne, sans-serif' }}>0{i + 1}.</span>
               {link.name}
             </NavLink>
           ))}

@@ -1,178 +1,258 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import profileImg from "../assets/profileImg.svg";
 console.log(motion)
+import profileImg from "../assets/profileImg.svg";
 
-const scrollFadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i = 0) => ({
+    opacity: 1, y: 0,
+    transition: { duration: 0.7, ease: "easeOut", delay: i * 0.12 }
+  }),
 };
 
 export default function Home() {
   return (
-    <div className="relative bg-gradient-to-br from-[#1A1A2E] via-[#16213E] to-[#0F3460] text-white overflow-hidden">
+    <div className="bg-[#0a0a0a] text-[#e8e4dc] min-h-screen">
 
-      {/* Teal glow orbs */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-      >
-        <div className="w-96 h-96 bg-[#00D4AA]/8 rounded-full absolute -top-24 -left-24 blur-3xl animate-pulse"></div>
-        <div className="w-72 h-72 bg-[#00D4AA]/6 rounded-full absolute top-1/2 right-1/4 blur-2xl animate-pulse"></div>
-        <div className="w-64 h-64 bg-[#00D4AA]/5 rounded-full absolute -bottom-16 -right-12 blur-3xl animate-pulse"></div>
-      </motion.div>
+      {/* ── HERO ── */}
+      <section className="relative min-h-screen flex flex-col justify-center px-8 md:px-16 pt-20 overflow-hidden">
 
-      {/* Hero Section */}
-      <section className="flex flex-col md:flex-row items-center px-8 md:px-20 pt-16 min-h-screen gap-8">
+        {/* Background: large ghost text */}
+        <div
+          className="absolute right-0 top-1/2 -translate-y-1/2 text-[22vw] font-black text-white/[0.03] select-none pointer-events-none leading-none"
+          style={{ fontFamily: 'Syne, sans-serif' }}
+        >
+          DEV
+        </div>
 
-        {/* Left Side: Intro */}
-        <div className="flex-1 max-w-3xl">
+        {/* Amber glow blob */}
+        <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-[#f5a623]/5 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="relative z-10 max-w-5xl">
+
+          {/* Status pill */}
           <motion.div
-            className="inline-flex items-center gap-2 bg-[#00D4AA]/10 border border-[#00D4AA]/30 rounded-full px-4 py-1.5 mb-6 mt-5"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={scrollFadeUp}
+            className="inline-flex items-center gap-2 mb-8"
+            variants={fadeUp} initial="hidden" animate="visible" custom={0}
           >
-            <span className="text-[#00D4AA] text-sm font-medium">Hi, I'm Abhijith 👋</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#f5a623] animate-pulse" />
+            <span className="text-xs text-white/40 tracking-[3px] uppercase">Available for opportunities</span>
           </motion.div>
 
+          {/* Main headline */}
           <motion.h1
-            className="text-4xl md:text-[56px] font-bold leading-tight mb-6"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={scrollFadeUp}
+            className="text-[clamp(3rem,8vw,7rem)] font-black leading-[0.95] tracking-tight mb-8"
+            style={{ fontFamily: 'Syne, sans-serif' }}
+            variants={fadeUp} initial="hidden" animate="visible" custom={1}
           >
-            Aspiring{" "}
-            <span className="text-[#00D4AA]">
-              Full-Stack
-            </span>
-            <br />
-            Software Engineer
+            <span className="block text-white">Abhijith.</span>
+            <span className="block text-[#f5a623]">Frontend</span>
+            <span className="block text-white/30">Developer.</span>
           </motion.h1>
 
+          {/* Sub line */}
           <motion.p
-            className="text-lg text-[#94A3B8] mb-10 max-w-lg"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={scrollFadeUp}
+            className="text-base md:text-lg text-white/40 max-w-md leading-relaxed mb-12"
+            variants={fadeUp} initial="hidden" animate="visible" custom={2}
           >
-            Passionate about software engineering, AI, DevOps, and modern web technologies — continuously learning to build scalable, high-performance systems.
+            I build things for the web — clean interfaces, honest code,
+            and experiences that actually work. Currently levelling up
+            into full-stack and DevOps territory.
           </motion.p>
 
+          {/* CTA row */}
           <motion.div
-            className="flex gap-5 flex-wrap"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={scrollFadeUp}
+            className="flex flex-wrap gap-4 items-center"
+            variants={fadeUp} initial="hidden" animate="visible" custom={3}
           >
             <Link
               to="/projects"
-              className="bg-[#00D4AA] text-[#0F1923] px-7 py-3.5 rounded-lg font-bold hover:opacity-90 transition shadow-[0_0_24px_rgba(0,212,170,0.4)] hover:scale-105 transform"
+              className="px-7 py-3.5 bg-[#f5a623] text-black font-bold text-sm rounded hover:bg-white transition-colors duration-300"
+              style={{ fontFamily: 'Syne, sans-serif' }}
             >
-              View Projects
+              See My Work →
             </Link>
-
             <Link
               to="/contact"
-              className="border-2 border-[#00D4AA]/50 text-white px-7 py-3.5 rounded-lg font-semibold hover:border-[#00D4AA] hover:bg-[#00D4AA]/10 transition hover:scale-105 transform"
+              className="px-7 py-3.5 border border-white/15 text-white/70 text-sm font-medium rounded hover:border-white/40 hover:text-white transition-all duration-300"
             >
-              Contact Me
+              Get in Touch
             </Link>
+            <a
+              href="/resume.pdf"
+              download
+              className="px-7 py-3.5 border border-[#f5a623]/30 text-[#f5a623]/70 text-sm font-medium rounded hover:border-[#f5a623] hover:text-[#f5a623] transition-all duration-300"
+            >
+              Resume ↓
+            </a>
+          </motion.div>
+
+          {/* Stat row */}
+          <motion.div
+            className="flex gap-10 mt-16 border-t border-white/5 pt-10"
+            variants={fadeUp} initial="hidden" animate="visible" custom={4}
+          >
+            {[
+              { n: "3+", label: "Projects shipped" },
+              { n: "4", label: "Certificates earned" },
+              { n: "1yr+", label: "Self-taught journey" },
+            ].map(({ n, label }) => (
+              <div key={label}>
+                <div className="text-3xl font-black text-[#f5a623]" style={{ fontFamily: 'Syne, sans-serif' }}>{n}</div>
+                <div className="text-xs text-white/30 mt-1 tracking-wide">{label}</div>
+              </div>
+            ))}
           </motion.div>
         </div>
 
-        {/* Right Side: Profile Image */}
+        {/* Profile image — floated right, subtle */}
         <motion.div
-          className="flex-1 flex justify-center md:justify-end items-center"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="absolute right-16 bottom-16 hidden lg:block"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
         >
-          <div className="relative">
-            {/* Teal glow ring behind image */}
-            <div className="absolute inset-0 rounded-full bg-[#00D4AA]/20 blur-xl scale-110"></div>
+          <div className="relative w-64 h-64">
+            <div className="absolute inset-0 rounded-full bg-[#f5a623]/10 blur-2xl" />
             <img
               src={profileImg}
               alt="Abhijith"
-              className="relative w-64 h-64 md:w-72 md:h-72 rounded-full border-2 border-[#00D4AA]/40 shadow-[0_0_40px_rgba(0,212,170,0.2)] object-cover"
+              className="relative w-full h-full rounded-full object-cover border border-white/10"
             />
           </div>
         </motion.div>
+
+        {/* Scroll hint */}
+        <motion.div
+          className="absolute bottom-8 left-16 flex items-center gap-3 text-white/20 text-xs tracking-widest"
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        >
+          <div className="w-px h-8 bg-white/20" />
+          SCROLL
+        </motion.div>
       </section>
 
-      {/* About Me Section */}
-      <motion.section
-        className="mt-8 px-8 md:px-0 py-20 bg-[#0D1B35]/80 backdrop-blur-sm rounded-3xl border border-[#00D4AA]/10"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={scrollFadeUp}
-      >
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-12">
+      {/* ── ABOUT ── */}
+      <section className="px-8 md:px-16 py-32 border-t border-white/5">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-start">
 
-          {/* Left Side: Intro */}
-          <div className="flex-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-0.5 bg-[#00D4AA]"></div>
-              <span className="text-[#00D4AA] text-sm font-semibold tracking-widest uppercase">About Me</span>
-            </div>
-            <h2 className="text-3xl font-bold mb-4 text-white">Who I Am</h2>
-            <p className="text-[#94A3B8] mb-4 leading-relaxed">
-              I'm Abhijith, an aspiring Full-Stack Software Engineer with a passion for building scalable, efficient, and elegant web applications. My journey began with curiosity for technology and grew into a deep love for problem-solving and creating meaningful solutions.
+          {/* Left */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.7 }}
+          >
+            <span className="text-xs tracking-[4px] text-[#f5a623]/60 uppercase mb-4 block">01 — About</span>
+            <h2 className="text-5xl font-black text-white mb-6" style={{ fontFamily: 'Syne, sans-serif' }}>
+              Who<br />I Am
+            </h2>
+            <div className="w-10 h-px bg-[#f5a623] mb-8" />
+            <p className="text-white/50 leading-relaxed mb-4">
+              I'm a self-taught frontend developer from Kerala, India. What started
+              as curiosity about how websites work turned into a genuine obsession
+              with building them well — and then obsessing about the backend and
+              infrastructure too.
             </p>
-            <p className="text-[#94A3B8] mb-4 leading-relaxed">
-              My expertise spans across <span className="font-semibold text-[#00D4AA]">React, JavaScript, CSS, NodeJS, MongoDB, and modern DevOps tools</span>. I enjoy designing clean UI/UX experiences, writing optimized code, and continuously learning the latest technologies.
+            <p className="text-white/50 leading-relaxed mb-4">
+              My stack right now is <span className="text-white/80">React, JavaScript, Tailwind, and Node.js</span>.
+              I'm actively learning TypeScript, Docker, and Next.js — not because
+              it's trendy but because I want to ship production-grade work.
             </p>
-            <p className="text-[#94A3B8] leading-relaxed">
-              I thrive in collaborative environments, love tackling challenging projects, and aspire to contribute to software that makes a real impact.
+            <p className="text-white/50 leading-relaxed">
+              I'm looking for my first real role — one where I can write real code,
+              get real feedback, and grow fast.
             </p>
-          </div>
+          </motion.div>
 
-          {/* Right Side: Skills & Highlights */}
-          <div className="flex-1 grid grid-cols-2 gap-4">
+          {/* Right — skill highlights grid */}
+          <motion.div
+            className="grid grid-cols-2 gap-3"
+            initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.15 }}
+          >
             {[
-              { title: "Frontend Development", desc: "React, Tailwind, JavaScript, HTML, CSS" },
-              { title: "Backend & Database", desc: "NodeJS, Express, MongoDB, SQL" },
-              { title: "DevOps & Tools", desc: "Git, GitHub, Docker, CI/CD" },
-              { title: "Soft Skills", desc: "Problem-Solving, Collaboration, Communication" },
-              { title: "Learning Focus", desc: "AI, Rust, Flutter, Advanced Backend" },
-              { title: "Achievements", desc: "Projects, Certificates" },
-            ].map((skill, idx) => (
+              { area: "Frontend", items: "React · Tailwind · JS · HTML · CSS" },
+              { area: "Backend", items: "Node.js · Express · MongoDB" },
+              { area: "DevOps", items: "Git · GitHub · Docker · CI/CD" },
+              { area: "Design", items: "Figma · UX Principles · Responsive" },
+              { area: "Learning", items: "TypeScript · Next.js · Rust · AI" },
+              { area: "Soft Skills", items: "Self-driven · Collaborative · Fast learner" },
+            ].map(({ area, items }) => (
+              <div key={area} className="border border-white/5 rounded-lg p-4 hover:border-[#f5a623]/30 transition-colors duration-300 group">
+                <div className="text-[#f5a623] text-xs font-bold mb-2 tracking-wider uppercase" style={{ fontFamily: 'Syne, sans-serif' }}>{area}</div>
+                <div className="text-white/35 text-xs leading-relaxed group-hover:text-white/50 transition-colors duration-300">{items}</div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── PROJECTS TEASER ── */}
+      <section className="px-8 md:px-16 py-20 border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+            className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
+          >
+            <div>
+              <span className="text-xs tracking-[4px] text-[#f5a623]/60 uppercase mb-4 block">02 — Work</span>
+              <h2 className="text-4xl font-black text-white" style={{ fontFamily: 'Syne, sans-serif' }}>
+                Selected Projects
+              </h2>
+            </div>
+            <Link
+              to="/projects"
+              className="text-sm text-[#f5a623] border-b border-[#f5a623]/40 pb-0.5 hover:border-[#f5a623] transition-colors duration-300 self-start md:self-auto"
+            >
+              View all →
+            </Link>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              {
+                n: "01", name: "F1-UI-Simulator", tag: "UI · Mock Data",
+                desc: "F1 themed dashboard UI with simulated data — built to practice component architecture.",
+                link: "https://f1-ui-simulator.netlify.app/"
+              },
+              {
+                n: "02", name: "React E-Commerce", tag: "React · Cart",
+                desc: "Learning project: product listing and add-to-cart flow. No backend — pure frontend state practice.",
+                link: "https://react-e-commerce31.netlify.app/"
+              },
+              {
+                n: "03", name: "Movie Explorer", tag: "React · API",
+                desc: "Browse and search movies. Genre filters and detail pages — live link coming soon.",
+                link: null
+              },
+            ].map(({ n, name, tag, desc, link }) => (
               <motion.div
-                key={idx}
-                className="bg-[#1A1A2E]/80 border border-[#00D4AA]/15 p-5 rounded-xl hover:border-[#00D4AA]/40 transition-all duration-300"
-                whileHover={{ scale: 1.04, borderColor: "rgba(0,212,170,0.4)" }}
-                transition={{ type: "spring", stiffness: 200 }}
+                key={n}
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.5 }}
+                className="group border border-white/5 rounded-lg p-6 hover:border-[#f5a623]/20 transition-all duration-300 flex flex-col"
               >
-                <h3 className="text-[#00D4AA] font-semibold mb-2 text-sm">{skill.title}</h3>
-                <p className="text-[#64748B] text-sm leading-relaxed">{skill.desc}</p>
+                <div className="flex items-start justify-between mb-6">
+                  <span className="text-[#f5a623]/30 text-xs font-bold" style={{ fontFamily: 'Syne, sans-serif' }}>{n}</span>
+                  <span className="text-[10px] text-white/25 border border-white/10 rounded px-2 py-0.5">{tag}</span>
+                </div>
+                <h3 className="text-white font-bold text-lg mb-3" style={{ fontFamily: 'Syne, sans-serif' }}>{name}</h3>
+                <p className="text-white/35 text-sm leading-relaxed flex-1 mb-6">{desc}</p>
+                {link ? (
+                  <a href={link} target="_blank" rel="noreferrer"
+                    className="text-xs text-[#f5a623]/60 group-hover:text-[#f5a623] transition-colors duration-300">
+                    Live demo ↗
+                  </a>
+                ) : (
+                  <span className="text-xs text-white/20">Coming soon</span>
+                )}
               </motion.div>
             ))}
           </div>
         </div>
-      </motion.section>
-
-      {/* Projects Teaser */}
-      <motion.div
-        className="px-8 md:px-20 py-20"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={scrollFadeUp}
-      >
-        <h2 className="text-3xl font-bold text-white mb-4 text-center">Some of My Work</h2>
-        <div className="w-12 h-0.5 bg-[#00D4AA] mx-auto mb-6"></div>
-        <p className="text-[#94A3B8] text-lg text-center max-w-2xl mx-auto">
-          Check out my projects to see how I translate ideas into code and bring concepts to life with elegant design and clean architecture.
-        </p>
-      </motion.div>
+      </section>
 
     </div>
   );
