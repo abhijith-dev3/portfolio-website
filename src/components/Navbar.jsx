@@ -62,7 +62,7 @@ export default function Navbar() {
             </NavLink>
           ))}
           <a
-            href="/resume.pdf"
+            href=""
             download
             className="ml-2 px-4 py-1.5 border border-[#f5a623]/60 text-[#f5a623] text-sm font-medium rounded hover:bg-[#f5a623] hover:text-black transition-all duration-300"
             style={{ fontFamily: 'Syne, sans-serif' }}

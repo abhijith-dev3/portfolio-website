@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 console.log(motion)
-import profileImg from "../assets/profileImg.svg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -46,8 +45,8 @@ export default function Home() {
             style={{ fontFamily: 'Syne, sans-serif' }}
             variants={fadeUp} initial="hidden" animate="visible" custom={1}
           >
-            <span className="block text-white">Abhijith.</span>
-            <span className="block text-[#f5a623]">Frontend</span>
+            <span className="block text-white mb-1">Abhijith.</span>
+            <span className="block text-[#f5a623]">Full Stack</span>
             <span className="block text-white/30">Developer.</span>
           </motion.h1>
 
@@ -56,9 +55,8 @@ export default function Home() {
             className="text-base md:text-lg text-white/40 max-w-md leading-relaxed mb-12"
             variants={fadeUp} initial="hidden" animate="visible" custom={2}
           >
-            I build things for the web — clean interfaces, honest code,
-            and experiences that actually work. Currently levelling up
-            into full-stack and DevOps territory.
+            I build full-stack web applications with clean UI, solid backend logic, and a focus on real-world functionality.
+Currently strengthening my skills in full-stack development and DSA while exploring scalable system design and DevOps fundamentals.
           </motion.p>
 
           {/* CTA row */}
@@ -106,23 +104,6 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Profile image — floated right, subtle */}
-        <motion.div
-          className="absolute right-16 bottom-16 hidden lg:block"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-        >
-          <div className="relative w-64 h-64">
-            <div className="absolute inset-0 rounded-full bg-[#f5a623]/10 blur-2xl" />
-            <img
-              src={profileImg}
-              alt="Abhijith"
-              className="relative w-full h-full rounded-full object-cover border border-white/10"
-            />
-          </div>
-        </motion.div>
-
         {/* Scroll hint */}
         <motion.div
           className="absolute bottom-8 left-16 flex items-center gap-3 text-white/20 text-xs tracking-widest"
@@ -149,13 +130,13 @@ export default function Home() {
             </h2>
             <div className="w-10 h-px bg-[#f5a623] mb-8" />
             <p className="text-white/50 leading-relaxed mb-4">
-              I'm a self-taught frontend developer from Kerala, India. What started
-              as curiosity about how websites work turned into a genuine obsession
-              with building them well — and then obsessing about the backend and
-              infrastructure too.
+              I’m a self-taught frontend developer from Kerala, India.
+               What started as curiosity about how websites work has grown
+                into a passion for building full web applications, now expanding 
+                into backend systems and infrastructure.
             </p>
             <p className="text-white/50 leading-relaxed mb-4">
-              My stack right now is <span className="text-white/80">React, JavaScript, Tailwind, and Node.js</span>.
+              My stack right now is <span className="text-amber-400/80">React, JavaScript, Tailwind, and Node.js</span>.
               I'm actively learning TypeScript, Docker, and Next.js — not because
               it's trendy but because I want to ship production-grade work.
             </p>
@@ -174,7 +155,7 @@ export default function Home() {
             {[
               { area: "Frontend", items: "React · Tailwind · JS · HTML · CSS" },
               { area: "Backend", items: "Node.js · Express · MongoDB" },
-              { area: "DevOps", items: "Git · GitHub · Docker · CI/CD" },
+              { area: "DevOps", items: "Git · GitHub · Docker(In Progress) · CI/CD (In Progress)" },
               { area: "Design", items: "Figma · UX Principles · Responsive" },
               { area: "Learning", items: "TypeScript · Next.js · Rust · AI" },
               { area: "Soft Skills", items: "Self-driven · Collaborative · Fast learner" },
@@ -213,19 +194,19 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-4">
             {[
               {
-                n: "01", name: "F1-UI-Simulator", tag: "UI · Mock Data",
+                n: "01", name: "Note App", tag: "Full Stack",
+                desc: "Full-stack note-taking app with CRUD operations and persistent storage for managing personal notes.",
+                link: "https://note-app-theta-topaz.vercel.app/"
+              },
+              {
+                n: "02", name: "Habit Tracker", tag: "Full Stack",
+                desc: "Full-stack habit tracker to create, manage, and monitor daily habits with progress tracking and persistent storage",
+                link: "https://full-stack-habit-tracker.vercel.app/"
+              },
+              {
+                 n: "03", name: "F1-UI-Simulator", tag: "UI · Mock Data",
                 desc: "F1 themed dashboard UI with simulated data — built to practice component architecture.",
                 link: "https://f1-ui-simulator.netlify.app/"
-              },
-              {
-                n: "02", name: "React E-Commerce", tag: "React · Cart",
-                desc: "Learning project: product listing and add-to-cart flow. No backend — pure frontend state practice.",
-                link: "https://react-e-commerce31.netlify.app/"
-              },
-              {
-                n: "03", name: "Movie Explorer", tag: "React · API",
-                desc: "Browse and search movies. Genre filters and detail pages — live link coming soon.",
-                link: null
               },
             ].map(({ n, name, tag, desc, link }) => (
               <motion.div
