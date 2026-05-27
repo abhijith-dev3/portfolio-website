@@ -35,7 +35,7 @@ const categories = [
   {
     num: "02",
     title: "Backend & DB",
-    status: "Learning",
+    status: "Intermediate",
     statusColor: "text-white/40",
     skills: ["Node.js", "MongoDB", "Docker"],
     desc: "Building foundational knowledge. Can spin up a basic Express API, connect to MongoDB, and understand Docker containers.",
