@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
+import resume from "../assets/images/pdf/resume.pdf";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -62,7 +63,7 @@ export default function Navbar() {
             </NavLink>
           ))}
           <a
-            href=""
+            href={resume}
             download
             className="ml-2 px-4 py-1.5 border border-[#f5a623]/60 text-[#f5a623] text-sm font-medium rounded hover:bg-[#f5a623] hover:text-black transition-all duration-300"
             style={{ fontFamily: 'Syne, sans-serif' }}

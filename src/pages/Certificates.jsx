@@ -58,8 +58,8 @@ export default function Certificates() {
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.6 }}
           >
-            Things I've<br />
-            <span className="text-[#f5a623]">Achieved</span>
+            Always<br />
+            <span className="text-[#f5a623]">Learning</span>
           </motion.h1>
         </div>
       </section>
