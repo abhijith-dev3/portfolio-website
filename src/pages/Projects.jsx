@@ -29,8 +29,8 @@ const projects = [
   description:
     "Full-stack habit tracking application that allows users to create, manage, and monitor daily habits with progress tracking and persistent database storage, featuring a clean and responsive UI.",
   tech: ["React", "Node.js", "Express", "MongoDB"],
-  github: "https://github.com/abhijith-dev3/FULL-STACK-HABIT-TRACKER.git",
-  live: "https://full-stack-habit-tracker.vercel.app/",
+  link: "https://github.com/abhijith-dev3/FULL-STACK-HABIT-TRACKER.git",
+  liveLink: "https://full-stack-habit-tracker.vercel.app/",
   image: habit
 },
   {
