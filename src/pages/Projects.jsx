@@ -5,7 +5,7 @@ import { HiExternalLink } from "react-icons/hi";
 import { SiTailwindcss } from "react-icons/si";
 import { FaReact, FaJs } from "react-icons/fa";
 import f1 from "../assets/images/f1.png";
-import commerce from "../assets/images/commerce.png";
+import ecommerce from "../assets/images/ecommerce.png";
 import note from "../assets/images/notes.png";
 import ProjectCard from "../components/ProjectCard";
 import habit from "../assets/images/habit.png"
@@ -51,9 +51,9 @@ const projects = [
     description:
       "Learning project focused on React state management — product listing, add-to-cart flow, and responsive design. Frontend only, no backend or payments.",
     tech: ["React", "Tailwind", "JavaScript"],
-    link: "https://github.com/abhijith-dev3/React-E-commerce-Project.git",
-    liveLink: "https://react-e-commerce31.netlify.app/",
-    image: commerce,
+    link: "https://github.com/abhijith-dev3/Amped-Ecommerce.git",
+    liveLink: "https://amped-ecommerce-two.vercel.app/",
+    image: ecommerce,
   }
 ];
 
